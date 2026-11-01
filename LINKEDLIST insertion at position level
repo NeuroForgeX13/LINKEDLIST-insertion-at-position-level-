@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+struct node
+{
+	int data;
+	node *next;
+};
+node *head=NULL;
+void insertatposition(int value,int pos)
+{
+	node *newnode=new node();
+	newnode->data=value;
+	
+	if(pos==1)
+	{
+		newnode->next=head;
+		head=newnode;
+		return;
+	}
+	node *temp=head;
+	for(int i=1;i<pos-1;i++)
+	{
+		temp=temp->next;
+	}
+	newnode->next=temp->next;
+	temp->next=newnode;
+}
+void display()
+{
+	node * temp=head;
+	while(temp!=NULL)
+	{
+		cout<<temp->data<<"->";
+		temp=temp->next;
+	}
+}
+int main()
+{
+	insertatposition(5,1);
+	insertatposition(10,2);
+	insertatposition(15,3);
+	insertatposition(20,4);
+	
+	display();
+}
